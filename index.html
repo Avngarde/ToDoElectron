@@ -8,32 +8,41 @@
 </head>
 
 <body>
+
     <div class="inputs">
-        <input type="text">
-        <button class="add_task">+</button>
+        <input class="text_input">
+        <button class="add_button" onclick="add_new_task()">+</button>
     </div>
 
     <div class="tasks_grid">
-        <div class="task_element">
-            <div class="name element">Przykładowe zadanie</div>
-            <a class="delete_task element">X</a>    
-        </div>
-        <div class="task_element">
-            <div class="name element">Przykładowe zadanie</div>
-            <a class="delete_task element">X</a>    
-        </div>
-        <div class="task_element">
-            <div class="name element">Przykładowe zadanie</div>
-            <a class="delete_task element">X</a>    
-        </div>
-        <div class="task_element">
-            <div class="name element">Przykładowe zadanie</div>
-            <a class="delete_task element">X</a>    
-        </div>
-        <div class="task_element">
-            <div class="name element">Przykładowe zadanie</div>
-            <a class="delete_task element">X</a>    
-        </div>
+
     </div>
+
+
 </body>
+
+<script>
+    function delete_task(index){
+      let task_grid = document.getElementsByClassName('tasks_grid')[0];
+      let element = document.getElementsByClassName('task_element')[index];
+      task_grid.removeChild(element);
+    }
+
+    function set_delete_button_index(){
+        let task_element_quantity = document.getElementsByClassName('task_element').length;
+        return task_element_quantity;
+    }
+
+    function add_new_task(){
+        let text_input_value = document.getElementsByClassName('text_input')[0].value;
+        let delete_button_index = set_delete_button_index();
+        let new_task_html = `
+             <div class="task_element">
+                    <div class="task_description">${text_input_value}</div>
+                    <a class="delete_task" onclick="delete_task(${delete_button_index })">X</a>
+              </div>`
+        document.getElementsByClassName('tasks_grid')[0].innerHTML += new_task_html;
+    }
+</script>
+
 </html>
