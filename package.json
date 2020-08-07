@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/ShamanDev/ToDoElectron#readme",
   "devDependencies": {
-    "electron": "^9.1.0"
+    "electron": "^9.1.2"
+  },
+  "dependencies": {
+    "mongoose": "^5.9.28"
   }
 }
