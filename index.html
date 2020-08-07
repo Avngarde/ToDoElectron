@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300&family=Source+Sans+Pro:wght@300&family=Varela+Round&display=swap" rel="stylesheet">
     <title>ToDoElectron</title>
 </head>
 
 <body>
 
     <div class="inputs">
+      <form>
         <input class="text_input">
-        <button class="add_button" onclick="add_new_task()">+</button>
+        <input type="submit" class="add_button" onclick="add_new_task()" value="Dodaj">
+      </form>
     </div>
 
     <div class="tasks_grid">
@@ -22,27 +25,7 @@
 </body>
 
 <script>
-    function delete_task(index){
-      let task_grid = document.getElementsByClassName('tasks_grid')[0];
-      let element = document.getElementsByClassName('task_element')[index];
-      task_grid.removeChild(element);
-    }
 
-    function set_delete_button_index(){
-        let task_element_quantity = document.getElementsByClassName('task_element').length;
-        return task_element_quantity;
-    }
-
-    function add_new_task(){
-        let text_input_value = document.getElementsByClassName('text_input')[0].value;
-        let delete_button_index = set_delete_button_index();
-        let new_task_html = `
-             <div class="task_element">
-                    <div class="task_description">${text_input_value}</div>
-                    <a class="delete_task" onclick="delete_task(${delete_button_index })">X</a>
-              </div>`
-        document.getElementsByClassName('tasks_grid')[0].innerHTML += new_task_html;
-    }
 </script>
 
 </html>
