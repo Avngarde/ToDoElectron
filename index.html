@@ -11,10 +11,8 @@
 <body>
 
     <div class="inputs">
-      <form>
-        <input class="text_input">
-        <input type="submit" class="add_button" onclick="add_new_task()" value="Dodaj">
-      </form>
+      <input class="text_input">
+      <button class="add_button" onclick="">Dodaj</button>
     </div>
 
     <div class="tasks_grid">
@@ -24,8 +22,12 @@
 
 </body>
 
-<script>
+<script src="db_operations/adding_tasks.js"></script>
+<script src="db_operations/getting_tasks.js"></script>
+<script src="db_operations/deleting_tasks.js"></script>
 
+<script>
+  create_tasks_grid(); 
 </script>
 
 </html>
