@@ -1,11 +1,16 @@
-const mongoose = require('mongoose');
-const Task = require('/home/kamilpaczkowski/Documents/ToDoElectron/models/task').Task;
-const uri = require('/home/kamilpaczkowski/Documents/ToDoElectron/connection_uri').uri;
-
-
 function set_delete_button_index(){
     let task_element_quantity = document.getElementsByClassName('task_element').length;
     return task_element_quantity;
+}
+
+function create_loading_screen(){
+    let tasks_grid = document.getElementsByClassName('tasks_grid')[0];
+    tasks_grid.innerHTML = `<b>Loading!!!</b>`;
+}
+
+function delete_loading_screen(){
+    let tasks_grid = document.getElementsByClassName('tasks_grid')[0];
+    tasks_grid.innerHTML = ``;
 }
 
 function create_task_element(task_description){
@@ -19,16 +24,18 @@ function create_task_element(task_description){
 }
 
 function create_tasks_grid(){
-    mongoose.connect(uri, (err, db) => {
+    create_loading_screen();
+    mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}, (err, db) => {
         if (err) throw err;
         Task.find({}, (err, documents) => {
             if (err) throw err;
+            delete_loading_screen();
             documents.forEach(document => {
                 let delete_button_index = set_delete_button_index();
                 create_task_element(document.description);
             });
             mongoose.connection.close()
             return;
-        })
-    })
+        });
+    });
 }
