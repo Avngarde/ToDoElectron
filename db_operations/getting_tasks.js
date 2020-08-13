@@ -14,11 +14,10 @@ function delete_loading_screen(){
 }
 
 function create_task_element(task_description){
-    let delete_button_index = set_delete_button_index();
     let new_task_html = `
          <div class="task_element">
                 <div class="task_description">${task_description}</div>
-                <a class="delete_task" onclick="delete_task(${delete_button_index })">X</a>
+                <a class="delete_task" onclick="delete_task('${task_description}')">X</a>
           </div>`
     document.getElementsByClassName('tasks_grid')[0].innerHTML += new_task_html;
 }
@@ -31,7 +30,6 @@ function create_tasks_grid(){
             if (err) throw err;
             delete_loading_screen();
             documents.forEach(document => {
-                let delete_button_index = set_delete_button_index();
                 create_task_element(document.description);
             });
             mongoose.connection.close()

@@ -11,7 +11,7 @@ function add_new_task_to_grid(description){
     let new_task_html = `
          <div class="task_element">
                 <div class="task_description">${description}</div>
-                <a class="delete_task" onclick="delete_task(0)">X</a>
+                <a class="delete_task" onclick="delete_task('${description}')">X</a>
           </div>`
     document.getElementsByClassName('tasks_grid')[0].innerHTML += new_task_html;
 }
